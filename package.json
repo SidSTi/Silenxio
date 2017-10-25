@@ -1,0 +1,21 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "description": "Silenxio is a command-line tool that displays multiple pieces of information from multiple APIs",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.17.0",
+    "chalk": "^2.3.0",
+    "commander": "^2.11.0",
+    "express": "^4.16.2",
+    "json-beautify": "^1.0.1",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {},
+  "author": "Daniel Dupont",
+  "email": "danieldupont.contact@gmail.com",
+  "license": "ISC",
+  "bin": {
+    "silenxio": "./index.js"
+  }
+}
