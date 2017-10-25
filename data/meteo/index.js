@@ -9,8 +9,6 @@ let getCurrentWeather = (zipcode) => {
         })
 }
 
-console.log('hotfix test')
-
 module.exports = {
     getCurrentWeather
 }
