@@ -1,17 +1,23 @@
 {
-  "name": "api",
+  "name": "Silenxio",
   "version": "0.1.0",
   "description": "Silenxio is a command-line tool that displays multiple pieces of information from multiple APIs",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.17.0",
     "chalk": "^2.3.0",
+    "co-fs": "^1.2.0",
     "commander": "^2.11.0",
     "express": "^4.16.2",
+    "inquirer": "^3.3.0",
     "json-beautify": "^1.0.1",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "node-cmd": "^3.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  },
   "author": "Daniel Dupont",
   "email": "danieldupont.contact@gmail.com",
   "license": "ISC",

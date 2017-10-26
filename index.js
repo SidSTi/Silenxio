@@ -1,11 +1,21 @@
 #!/usr/bin/env node
-const program = require('commander');
-const Meteo = require('./data/meteo');
+const chalk = require('chalk');
+const Launcher = require('./services/launcher/launcher');
 
-program
-  .arguments('meteo')
-  .option('-z, --zipcode <zipcode>', 'show meteo for the zipcode')
-  .action(function () {
-    Meteo.getCurrentWeather(program.zipcode)
-  })
-  .parse(process.argv);
+console.log(chalk.bgGreen(' ****** Hi, welcome to the Silenxio tool ******'));
+
+let launcher = new Launcher();
+const obj = {
+  type: 'list',
+  name: 'name',
+  message: chalk.green('Choose what services you want to use ?'),
+  default: 'weather',
+  choices: [{
+    key: 'w',
+    name: 'Weather',
+    value: 'weather'
+  }]
+};
+launcher.launch(obj);
+
+
