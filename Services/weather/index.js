@@ -41,11 +41,13 @@ class Weather {
       type: 'input',
       name: 'name',
       message: chalk.green('Enter your city'),
-      default: 'Noisy-le-grand',
     };
     Launcher.launch(questions).then((answers) => {
-      console.log('answers.name : ', answers.name);
-      return new WeatherModel({city: 'paris'}).getCurrentWeatherByCity();
+      if(answers.name === ''){
+        console.log("Please enter the city");
+        return;
+      }
+      return new WeatherModel({city: answers.name}).getCurrentWeatherByCity();
     }).catch((err) => {
       console.log('Voici l\'erreur : ', err);
     })
