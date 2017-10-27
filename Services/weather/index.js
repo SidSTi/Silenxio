@@ -1,9 +1,10 @@
 const chalk = require('chalk');
 const inquirer = require('inquirer');
-const WeatherModel = require('../../data/weather/WeatherModel');
+const WeatherModel = require('../../Model/weather/WeatherModel');
+const Launcher = require('../launcher/launcher');
 
 class Weather {
-  show() {
+  constructor() {
     const questions = {
       type: 'list',
       name: 'name',
@@ -21,7 +22,7 @@ class Weather {
           value: 'zipcode'
         }]
     };
-    inquirer.prompt(questions).then((answers) => {
+    Launcher.launch(questions).then((answers) => {
       switch (answers.name) {
         case 'city':
           this.showByCity();
@@ -30,7 +31,9 @@ class Weather {
           this.showByZipCode();
           break;
       }
-    });
+    }).catch((err) => {
+      console.log('Voici l\'erreur : ', err);
+    })
   }
 
   showByCity() {
@@ -38,11 +41,16 @@ class Weather {
       type: 'input',
       name: 'name',
       message: chalk.green('Enter your city'),
-      default: 'Noisy-le-grand',
     };
-    inquirer.prompt(questions).then((answers) => {
-      return new WeatherModel().getCurrentWeatherByCity(answers.name);
-    });
+    Launcher.launch(questions).then((answers) => {
+      if(answers.name === ''){
+        console.log("Please enter the city");
+        return;
+      }
+      return new WeatherModel({city: answers.name}).getCurrentWeatherByCity();
+    }).catch((err) => {
+      console.log('Voici l\'erreur : ', err);
+    })
   }
 
   showByZipCode() {
@@ -50,11 +58,17 @@ class Weather {
       type: 'input',
       name: 'name',
       message: chalk.green('Enter your zipcode'),
-      default: 93160,
+      // default: 93160,
     };
-    inquirer.prompt(questions).then((answers) => {
-      return new WeatherModel().getCurrentWeatherByZipCode(answers.name)
-    });
+    Launcher.launch(questions).then((answers) => {
+      if(answers.name === ''){
+        console.log("Please enter the zipcode");
+        return;
+      }
+      return new WeatherModel({zipcode: answers.name}).getCurrentWeatherByZipCode()
+    }).catch((err) => {
+      console.log('Voici l\'erreur : ', err);
+    })
   }
 }
 
